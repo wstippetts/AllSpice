@@ -11,30 +11,36 @@ CREATE TABLE
 -- SECTION Recipe
 
 CREATE TABLE
-    Recipe(
+    Recipes(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'Recipe ID',
         title: VARCHAR(100) NOT NULL COMMENT 'Recipe Title',
         instructions: VARCHAR(1000) NOT NULL COMMENT 'instructions',
         img: VARCHAR(500) NOT NULL COMMENT 'image link',
         category: VARCHAR(100) NOT NULL COMMENT 'Food category',
-        FOREIGN KEY(creatorId) REFERENCES accounts(id) ON DELETE CASCADE COMMENT 'Creator ID',
+        creatorId: VARCHAR(100) NOT NULL COMMENT 'Creator ID',
+        FOREIGN KEY(creatorId) REFERENCES accounts(id) ON DELETE CASCADE COMMENT 'Creator ID'
     ) default charset utf8 COMMENT '';
 
 -- SECTION Ingredient
 
 CREATE TABLE
-    Ingredient(
+    Ingredients(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'Ingredient ID',
-        title: VARCHAR(100) NOT NULL COMMENT 'Ingredient Title',
+        name: VARCHAR(100) NOT NULL COMMENT 'Ingredient Title',
         quantity: VARCHAR(100) NOT NULL COMMENT 'Quantity',
-        FOREIGN KEY(recipeId) REFERENCES Recipe(id) ON DELETE CASCADE COMMENT 'Recipe ID',
+        creatorId: VARCHAR (100) NOT NULL COMMENT 'Creator ID',
+        recipeId: VARCHAR(100) NOT NULL COMMENT 'RecipeId',
+        FOREIGN KEY(creatorId) REFERENCES accounts(id) ON DELETE CASCADE COMMENT 'Profile ID',
+        FOREIGN KEY(recipeId) REFERENCES Recipe(id) ON DELETE CASCADE COMMENT 'Recipe ID'
     ) default charset utf8 COMMENT '';
 
 -- SECTION Favorite
 
 CREATE TABLE
-    Favorite(
+    Favorites(
         id INT NOT NULL AUTO_INCREMENT PRIMARY KEY COMMENT 'Favorite ID',
+        recipeId INT NOT NULL COMMENT 'Recipe ID',
+        accountId VARCHAR(150) NOT NULL COMMENT 'Profile ID',
         FOREIGN KEY(creatorId) REFERENCES accounts(id) ON DELETE CASCADE COMMENT 'Profile ID',
-        FOREIGN KEY(recipeId) REFERENCES Recipe(id) ON DELETE CASCADE COMMENT 'Recipe ID',
+        FOREIGN KEY(recipeId) REFERENCES Recipe(id) ON DELETE CASCADE COMMENT 'Recipe ID'
     ) default charset utf8 COMMENT '';

@@ -8,7 +8,10 @@ public class Recipe
   public string Img { get; set; }
   public string Category { get; set; }
   public string CreatorId { get; set; }
+  public Profile Creator { get; set; }
 
-  public Profile creator { get; set; }
-
+}
+public class MyRecipe : Recipe
+{
+  public int FavoriteId { get; set; }
 }
