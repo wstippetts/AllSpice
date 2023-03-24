@@ -11,10 +11,6 @@
     {
       "path": ".github/workflows",
       "name": "workflows"
-    },
-    {
-      "name": "AllSpice",
-      "path": "."
     }
   ],
   "settings": {
