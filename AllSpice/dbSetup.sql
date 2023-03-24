@@ -8,6 +8,8 @@ CREATE TABLE
         picture varchar(255) COMMENT 'User Picture'
     ) default charset utf8 COMMENT '';
 
+DROP Table accounts;
+
 -- SECTION Recipe
 
 CREATE TABLE
