@@ -6,13 +6,14 @@ public class AccountController : ControllerBase
 {
   private readonly AccountService _accountService;
   private readonly Auth0Provider _auth0Provider;
-  private readonly FavoritesService _favoritesService;
+  // private readonly FavoritesService _favoritesService;
 
-  public AccountController(AccountService accountService, Auth0Provider auth0Provider, FavoritesService favoritesService)
+  public AccountController(AccountService accountService, Auth0Provider auth0Provider)
   {
     _accountService = accountService;
     _auth0Provider = auth0Provider;
-    _favoritesService = favoritesService;
+    // _favoritesService = favoritesService;
+    // remember to add that back into the accountcontroller arguments
   }
 
   [HttpGet]
@@ -29,20 +30,20 @@ public class AccountController : ControllerBase
       return BadRequest(e.Message);
     }
   }
-  [HttpGet("favorites")]
-  [Authorize]
-  public async Task<ActionResult<List<MyRecipe>>> GetRecipes()
-  {
-    try
-    {
-      Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
-      List<MyRecipe> myRecipes = _favoritesService.GetMyRecipes(userInfo.Id);
-      return myRecipes;
-    }
-    catch (Exception e)
-    {
-      return BadRequest(e.Message);
-    }
-  }
+  // [HttpGet("favorites")]
+  // [Authorize]
+  // public async Task<ActionResult<List<MyRecipe>>> GetRecipes()
+  // {
+  //   try
+  //   {
+  //     Account userInfo = await _auth0Provider.GetUserInfoAsync<Account>(HttpContext);
+  //     List<MyRecipe> myRecipes = _favoritesService.GetMyRecipes(userInfo.Id);
+  //     return myRecipes;
+  //   }
+  //   catch (Exception e)
+  //   {
+  //     return BadRequest(e.Message);
+  //   }
+  // }
 
 }
